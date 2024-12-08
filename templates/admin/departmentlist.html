@@ -1,0 +1,42 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block title %}Admin | Department{% endblock %}
+
+{% block content %} 
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="container">
+    {% if alerts|length %}
+      <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+      </div>
+    {% endif %}
+    {% if alertd|length %}
+      <div class="alert alert-danger alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alertd}}</strong> 
+      </div>
+    {% endif %}
+    <h2 class="text-center">Departments List</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Department Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for dept in all_dept %}
+          <tr>
+            <td>{{dept.department_name}}</td>
+            <td>
+              <a class="btn btn-danger" href="/adeletedept?dept_id={{dept.id}}"><i class="fa-solid fa-trash"></i></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block title %}Admin | Dashboard{% endblock %}
+
+{% block content %} 
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="container">
+    {% if alerts|length %}
+      <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+      </div>
+    {% endif %}
+    {% if alertd|length %}
+      <div class="alert alert-danger alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alertd}}</strong> 
+      </div>
+    {% endif %}
+    <h2 class="text-center">Doctors List</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Doctor Name</th>
+          <th>Department</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for doct in all_doct %}
+          <tr>
+            <td>{{doct.doctor_name}}</td>
+            <td>{{get_dpartment_name(doct.department_id)}}</td>
+            <td>
+              <a class="btn btn-primary" href="/aeditdoc?doct_id={{doct.id}}"><i class="fa-solid fa-pencil"></i></a>
+              <a class="btn btn-danger" href="/adeletedoc?doct_id={{doct.id}}"><i class="fa-solid fa-trash"></i></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %} 
+
+<div class="container login-container">
+    {% if alerts|length %}
+        <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+        </div>
+    {% endif %}
+    <h3>Hello, {{get_patient_name_by_id(session['pat_id'])}}</h3>
+    <h5>Referred Doctor: {{get_doctor_name_by_patient_id(session['pat_id'])}}</h5>
+    <h5>Referred Department: {{get_patient_department_by_id(session['pat_id'])}}</h5>
+    <div class="row login-row">
+        <div class="col-md-6">
+            <div class="card" style="width:400px">
+                <img class="card-img-top" src="/static/images/doctor.jpg" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">Check All Doctors</h4>
+                  <a href="{{url_for('pdoctlist')}}" class="btn btn-primary">Check</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card" style="width:400px">
+                <img class="card-img-top" src="/static/images/medicine.jpg" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">Check All Medicines</h4>
+                  <a href="{{url_for('pmedlist')}}" class="btn btn-primary">Check</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %} 
+
+<div class="container login-container">
+    {% if alerts|length %}
+        <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+        </div>
+    {% endif %}
+    <table class="table table-bordered" style="margin-top:3%;">
+        <thead>
+          <tr>
+            <th>Medicine Name</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for med in all_med %}
+                <tr>
+                    <td>{{med.medicine_name}}</td>
+                    <td>
+                        {% if med.in_stock > 0 %}
+                            <span class="badge bg-success">In Stock</span>
+                        {% else %}
+                            <span class="badge bg-danger">Out of Stock</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock %}

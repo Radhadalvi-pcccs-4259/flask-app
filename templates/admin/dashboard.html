@@ -1,0 +1,64 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block title %}Admin | Dashboard{% endblock %}
+
+{% block content %} 
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+  </div>
+  <div class="container">
+    {% if alerts|length %}
+      <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+      </div>
+    {% endif %}
+    <div class="row dash-row">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/static/images/sthethoscope.jpg" alt="Card image">
+                <div class="card-body">
+                  <h5 class="card-title">Create Department</h5>
+                  <p class="card-text">Create Department for your hospital</p>
+                  <a href="{{url_for('acreatedept')}}" class="btn btn-primary">CREATE</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/static/images/patient.jpg" alt="Card image">
+                <div class="card-body">
+                  <h5 class="card-title">Create Patient</h5>
+                  <p class="card-text">Create record for patient</p>
+                  <a href="{{url_for('acreatepat')}}" class="btn btn-primary">CREATE</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/static/images/medicine.jpg" alt="Card image">
+                <div class="card-body">
+                  <h5 class="card-title">Create Medicine</h5>
+                  <p class="card-text">Create new medicine in inventory</p>
+                  <a href="{{url_for('acreatemed')}}" class="btn btn-primary">CREATE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row dash-row">
+      <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="/static/images/doctor.jpg" alt="Card image">
+              <div class="card-body">
+                <h5 class="card-title">Create Doctor</h5>
+                <p class="card-text">Create Doctor for specific Department for your hospital</p>
+                <a href="{{url_for('acreatedoct')}}" class="btn btn-primary">CREATE</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %} 
+
+<div class="container login-container">
+    {% if alerts|length %}
+        <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+        </div>
+    {% endif %}
+    <table class="table table-bordered" style="margin-top:3%;">
+        <thead>
+          <tr>
+            <th>Doctor Name</th>
+            <th>Department</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for doct in all_doct %}
+                <tr>
+                    <td>{{doct.doctor_name}} <span class="badge bg-info"><i class="bi bi-shield-plus"></i></span></td>
+                    <td>{{get_dpartment_name(doct.department_id)}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+{% endblock %}

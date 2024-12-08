@@ -1,0 +1,49 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block title %}Admin | Patient{% endblock %}
+
+{% block content %} 
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="container">
+    {% if alerts|length %}
+      <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+      </div>
+    {% endif %}
+    {% if alertd|length %}
+      <div class="alert alert-danger alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alertd}}</strong> 
+      </div>
+    {% endif %}
+    <h2 class="text-center">Patients List</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Patient Name</th>
+          <th>Patient ID</th>
+          <th>Referred Doctor Name</th>
+          <th>Referred Department</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pat in all_pat %}
+          <tr>
+            <td>{{pat.patient_name}}</td>
+            <td>{{pat.id}}</td>
+            <td>{{get_doctor_name(pat.doctor_id)}}</td>
+            <td>{{get_dpartment_name(pat.department_id)}}</td>
+            <td>
+              <a class="btn btn-primary" href="/aeditpat?pat_id={{pat.id}}"><i class="fa-solid fa-pencil"></i></a>
+              <a class="btn btn-danger" href="/adeletepat?pat_id={{pat.id}}"><i class="fa-solid fa-trash"></i></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+{% endblock %}

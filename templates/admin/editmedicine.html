@@ -1,0 +1,37 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block title %}Admin | Medicine{% endblock %}
+
+{% block content %} 
+
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="container">
+    {% if alerts|length %}
+      <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+      </div>
+    {% endif %}
+    {% if alertd|length %}
+      <div class="alert alert-danger alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alertd}}</strong> 
+      </div>
+    {% endif %}
+    <h2 class="text-center">Edit Medicine</h2>
+    <form action="{{url_for('aeditmed')}}" method="post">
+        <div class="form-group ad-norm-div-grp">
+            <label>Medicine Name</label>
+            <input type="text" class="form-control" name="med" value="{{med_data.medicine_name}}"> 
+        </div>
+        <div class="form-group ad-norm-div-grp">
+            <label>Number of Packets</label>
+            <input type="number" class="form-control" name="stock" min="1" max="20" value="{{med_data.in_stock}}"> 
+        </div>
+        <input type="hidden" value="{{med_data.id}}" name="med_id"> 
+        <button class="btn btn-primary ad-norm-btn" type="submit">Create</button>
+    </form>
+  </div>
+</main>
+{% endblock %}

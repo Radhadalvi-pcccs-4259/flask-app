@@ -1,0 +1,40 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block title %}Admin | Patient{% endblock %}
+
+{% block content %} 
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="container">
+    {% if alerts|length %}
+      <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+      </div>
+    {% endif %}
+    {% if alertd|length %}
+      <div class="alert alert-danger alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alertd}}</strong> 
+      </div>
+    {% endif %}
+    <h2 class="text-center">Create Patient</h2>
+    <form action="{{url_for('acreatepat')}}" method="post">
+        <div class="form-group ad-norm-div-grp">
+            <label>Patient Name</label>
+            <input type="text" class="form-control" name="pat"> 
+        </div>
+        <div class="form-group ad-norm-div-grp">
+            <label>Select Doctor</label>
+            <select class="form-control" name="doct_id">
+                <option>Select</option>
+                {% for doct in all_doct %}
+                    <option value="{{doct.id}}">{{doct.doctor_name}} - {{get_dpartment_name(doct.department_id)}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-primary ad-norm-btn" type="submit">Create</button>
+    </form>
+  </div>
+</main>
+{% endblock %}

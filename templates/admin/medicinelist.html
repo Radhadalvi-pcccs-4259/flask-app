@@ -1,0 +1,53 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block title %}Admin | Medicine{% endblock %}
+
+{% block content %} 
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="container">
+    {% if alerts|length %}
+      <div class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alerts}}</strong> 
+      </div>
+    {% endif %}
+    {% if alertd|length %}
+      <div class="alert alert-danger alert-dismissible text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{alertd}}</strong> 
+      </div>
+    {% endif %}
+    <h2 class="text-center">Medicines List</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Medicine Name</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for med in all_med %}
+          <tr>
+            <td>{{med.medicine_name}}</td>
+            <td>{{med.in_stock}} Pieces</td>
+            <td>
+              {% if med.in_stock > 0 %}
+                <span class="badge bg-success">In Stock</span>
+              {% else %}
+                <span class="badge bg-danger">Out of Stock</span>
+              {% endif %}
+            </td>
+            <td>
+              <a class="btn btn-primary" href="/aeditmed?med_id={{med.id}}"><i class="fa-solid fa-pencil"></i></a>
+              <a class="btn btn-danger" href="/adeletemed?med_id={{med.id}}"><i class="fa-solid fa-trash"></i></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+{% endblock %}
