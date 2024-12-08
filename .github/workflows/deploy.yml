@@ -55,3 +55,4 @@ jobs:
 
         # Remove the key file for security
         rm ec2-key.pem
+
