@@ -7,7 +7,7 @@ mysql = MySQL(app)
 
 app.secret_key = 'hospital'
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '10.0.0.13'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Mysql123'
 app.config['MYSQL_DB'] = 'hospital'
