@@ -3,14 +3,18 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 
 app = Flask(__name__)
-mysql = MySQL(app)
 
 app.secret_key = 'hospital'
 
+# Set all configurations before initializing MySQL
 app.config['MYSQL_HOST'] = '10.0.0.13'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Mysql123'
 app.config['MYSQL_DB'] = 'hospital'
+
+# Initialize MySQL after the config has been set
+mysql = MySQL(app)
+
 app.jinja_env.auto_reload = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
@@ -457,6 +461,5 @@ def get_patient_department_by_id(pat_id):
     return dept_name
 app.jinja_env.globals.update(get_patient_department_by_id=get_patient_department_by_id)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
-
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
